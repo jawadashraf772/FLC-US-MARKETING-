@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Header() {
@@ -9,52 +9,37 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { name: "Home", href: "#" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Ops Hub", href: "#transparency" },
-    { name: "Services", href: "#value" },
-    { name: "Packages", href: "#pricing" },
+    { name: "Services & solutions", href: "#services" },
+    { name: "Industries", href: "#challenges" },
+    { name: "Case studies", href: "#case-studies" },
+    { name: "About", href: "#differentiators" },
+    { name: "Pricing", href: "#testimonials" },
   ];
 
   useEffect(() => {
-    const sectionIds = ["how-it-works", "about", "roadmap", "value", "transparency", "pricing", "assets", "faq"];
+    const sectionIds = ["services", "challenges", "case-studies", "differentiators", "testimonials"];
     
     const observerOptions = {
-      root: null, // Viewport
-      rootMargin: "-20% 0px -60% 0px", // Trigger when element is in middle of viewport
+      root: null,
+      rootMargin: "-30% 0px -50% 0px",
       threshold: 0,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const id = entry.target.id;
-          
-          let activeKey = "home";
-          if (id === "how-it-works" || id === "about" || id === "roadmap") {
-            activeKey = "how-it-works";
-          } else if (id === "value") {
-            activeKey = "value";
-          } else if (id === "transparency") {
-            activeKey = "transparency";
-          } else if (id === "pricing" || id === "assets" || id === "faq") {
-            activeKey = "pricing";
-          }
-          
-          setActiveSection(activeKey);
+          setActiveSection(entry.target.id);
         }
       });
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observe each section
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
 
-    // Fallback to highlight Home when scrolled to top
     const handleScrollFallback = () => {
       if (window.scrollY < 80) {
         setActiveSection("home");
@@ -70,31 +55,30 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo (Faseeh Lall & Co.) */}
         <a href="#" className="flex items-center">
-          <img src="/logo.png" alt="Faseeh Lall" className="h-11 w-auto object-contain" />
+          <img src="/logo.png" alt="Faseeh Lall & Co." className="h-10 w-auto object-contain" />
         </a>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
           {navItems.map((item) => {
-            const itemKey = item.href.replace("#", "") || "home";
+            const itemKey = item.href.replace("#", "");
             const isActive = activeSection === itemKey;
 
             return (
               <a
                 key={item.name}
                 href={item.href}
-                className={`relative text-sm font-bold transition-all duration-300 py-2 ${
+                className={`relative text-[13px] font-black tracking-normal transition-all duration-300 py-2 ${
                   isActive 
-                    ? "text-primary font-black" 
+                    ? "text-primary" 
                     : "text-slate-600 hover:text-primary"
                 }`}
               >
                 {item.name}
-                {/* Smooth sliding active indicator dot */}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavDot"
@@ -110,8 +94,8 @@ export default function Header() {
         {/* CTA Button */}
         <div className="hidden md:block">
           <a
-            href="#pricing"
-            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-sm shadow-primary/10"
+            href="#challenges"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-sm shadow-primary/10"
           >
             Book a call
           </a>
@@ -130,9 +114,9 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-slate-100 bg-white px-6 py-4 space-y-4">
+        <div className="md:hidden border-t border-slate-100 bg-white px-6 py-4 space-y-4 shadow-lg">
           {navItems.map((item) => {
-            const itemKey = item.href.replace("#", "") || "home";
+            const itemKey = item.href.replace("#", "");
             const isActive = activeSection === itemKey;
 
             return (
@@ -140,8 +124,8 @@ export default function Header() {
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsOpen(false)}
-                className={`block text-base font-bold transition-colors ${
-                  isActive ? "text-primary font-black" : "text-slate-700 hover:text-primary"
+                className={`block text-sm font-black transition-colors ${
+                  isActive ? "text-primary" : "text-slate-700 hover:text-primary"
                 }`}
               >
                 {item.name}
@@ -149,9 +133,9 @@ export default function Header() {
             );
           })}
           <a
-            href="#pricing"
+            href="#challenges"
             onClick={() => setIsOpen(false)}
-            className="block text-center rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-primary-hover"
+            className="block text-center rounded-xl bg-primary px-5 py-3 text-xs font-black uppercase tracking-wider text-white transition-colors hover:bg-primary-hover"
           >
             Book a call
           </a>

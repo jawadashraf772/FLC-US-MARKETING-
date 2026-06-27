@@ -11,7 +11,7 @@
   --color-brand-gray: #F4F4F6;
   
   --shadow-premium: 0 20px 40px rgba(9, 9, 11, 0.05);
-  --shadow-red: 0 10px 30px rgba(217, 4, 41, 0.2);
+  --shadow-red: 0 10px 30px rgba(217, 4, 41, 0.15);
 }
 
 html {

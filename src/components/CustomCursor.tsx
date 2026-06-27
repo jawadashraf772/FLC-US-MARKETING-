@@ -38,7 +38,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block bg-[#D90429]"
+      className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] hidden md:block bg-primary"
       style={{
         x: cursorX,
         y: cursorY,

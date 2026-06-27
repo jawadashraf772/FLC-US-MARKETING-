@@ -2,14 +2,14 @@
 
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import HowItWorksSection from "@/components/HowItWorksSection";
-import HardTruthSection from "@/components/HardTruthSection";
-import RoadmapSection from "@/components/RoadmapSection";
-import CoreOfferSection from "@/components/CoreOfferSection";
-import TransparencySection from "@/components/TransparencySection";
-import AssetProtectionSection from "@/components/AssetProtectionSection";
-import PricingSection from "@/components/PricingSection";
-import FaqSection from "@/components/FaqSection";
+import ValuePropBanner from "@/components/ValuePropBanner";
+import ChallengesSection from "@/components/ChallengesSection";
+import PipelineSection from "@/components/PipelineSection";
+import DifferentiatorsSection from "@/components/DifferentiatorsSection";
+import CaseStudiesSection from "@/components/CaseStudiesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import TeamSection from "@/components/TeamSection";
+import KnowledgeSection from "@/components/KnowledgeSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,14 +18,14 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <HeroSection />
-        <HowItWorksSection />
-        <HardTruthSection />
-        <RoadmapSection />
-        <CoreOfferSection />
-        <TransparencySection />
-        <PricingSection />
-        <AssetProtectionSection />
-        <FaqSection />
+        <ValuePropBanner />
+        <ChallengesSection />
+        <PipelineSection />
+        <DifferentiatorsSection />
+        <CaseStudiesSection />
+        <TestimonialsSection />
+        <TeamSection />
+        <KnowledgeSection />
       </main>
       <Footer />
     </>
