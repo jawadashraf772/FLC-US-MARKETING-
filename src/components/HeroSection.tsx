@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 
-const lineVariants = {
+const lineVariants: Variants = {
   hidden: { 
     y: "105%",
     opacity: 0,
@@ -13,7 +14,7 @@ const lineVariants = {
     opacity: 1,
     transition: { 
       duration: 1.05,
-      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+      ease: "easeOut",
     }
   }
 };
