@@ -13,7 +13,7 @@ const lineVariants = {
     opacity: 1,
     transition: { 
       duration: 1.05,
-      ease: [0.22, 1, 0.36, 1], // cinematic ease-out-expo
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
     }
   }
 };
