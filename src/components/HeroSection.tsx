@@ -105,14 +105,14 @@ export default function HeroSection() {
 
         {/* Headline — masked line-reveal exactly like reference video */}
         <div className="relative h-[150px] sm:h-[140px] md:h-[170px] lg:h-[200px] flex items-center justify-center overflow-hidden w-full mx-auto max-w-5xl select-none">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.h1
               key={index}
-              initial={{ y: 60, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -60, opacity: 0 }}
-              transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-              className="absolute text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3] max-w-5xl mx-auto font-heading font-black"
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: "0%", opacity: 1 }}
+              exit={{ y: "-100%", opacity: 0 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute w-full text-center text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3] max-w-5xl mx-auto font-heading font-black"
             >
               <div>{sentences[index].line1}</div>
               <div>
