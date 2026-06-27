@@ -6,18 +6,16 @@ import { ArrowUpRight, Check } from "lucide-react";
 const characterVariants = {
   hidden: { 
     opacity: 0, 
-    y: 35,
-    rotate: -1.5,
+    y: 45,
+    scale: 0.98,
   },
   visible: { 
     opacity: 1, 
     y: 0,
-    rotate: 0,
+    scale: 1,
     transition: { 
-      type: "spring",
-      stiffness: 40,
-      damping: 14,
-      mass: 1.1
+      duration: 1.3, // slow weightless drift
+      ease: [0.16, 1, 0.3, 1] // ultra-smooth ease-out-expo curve
     }
   }
 };
@@ -26,7 +24,7 @@ const sentenceVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.03, // organic flow speed between characters
+      staggerChildren: 0.025, // fluid wave stagger speed
     }
   }
 };
