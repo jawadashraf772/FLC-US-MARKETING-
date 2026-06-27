@@ -3,6 +3,71 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 
+const characterVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 35,
+    rotate: -1.5,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    rotate: 0,
+    transition: { 
+      type: "spring",
+      stiffness: 40,
+      damping: 14,
+      mass: 1.1
+    }
+  }
+};
+
+const sentenceVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.03, // organic flow speed between characters
+    }
+  }
+};
+
+function FloatingLine({ text, highlightWord, highlightClass }: { text: string; highlightWord?: string; highlightClass?: string }) {
+  if (highlightWord && text.includes(highlightWord)) {
+    const parts = text.split(highlightWord);
+    return (
+      <motion.span variants={sentenceVariants} className="block whitespace-pre-wrap">
+        {parts[0].split("").map((char, i) => (
+          <motion.span key={`p0-${i}`} variants={characterVariants} className="inline-block">
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+        <span className={highlightClass}>
+          {highlightWord.split("").map((char, i) => (
+            <motion.span key={`h-${i}`} variants={characterVariants} className="inline-block">
+              {char === " " ? "\u00A0" : char}
+            </motion.span>
+          ))}
+        </span>
+        {parts[1].split("").map((char, i) => (
+          <motion.span key={`p1-${i}`} variants={characterVariants} className="inline-block">
+            {char === " " ? "\u00A0" : char}
+          </motion.span>
+        ))}
+      </motion.span>
+    );
+  }
+
+  return (
+    <motion.span variants={sentenceVariants} className="block whitespace-pre-wrap">
+      {text.split("").map((char, i) => (
+        <motion.span key={i} variants={characterVariants} className="inline-block">
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+}
+
 export default function HeroSection() {
   const logos = [
     { name: "CitrusAd", logo: "/logos/citrusad.svg", text: "CitrusAd" },
@@ -45,66 +110,18 @@ export default function HeroSection() {
             visible: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.3,
+                staggerChildren: 0.35, // staggered line entrance
               },
             },
           }}
-          className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.15] max-w-5xl mx-auto font-heading font-black"
+          className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.25] max-w-5xl mx-auto font-heading font-black select-none"
         >
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            If Your Customer Buys Once,
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            You Made a <span className="text-primary">Sale.</span>
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            If They Come Back, You Built
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            <span className="text-primary">Trust.</span>
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            If They Tell Others, You Built
-          </motion.span>
-          <motion.span
-            variants={{
-              hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
-            }}
-            className="block"
-          >
-            a <span className="text-primary">Brand.</span>
-          </motion.span>
+          <FloatingLine text="If Your Customer Buys Once," />
+          <FloatingLine text="You Made a Sale." highlightWord="Sale." highlightClass="text-primary" />
+          <FloatingLine text="If They Come Back, You Built" />
+          <FloatingLine text="Trust." highlightWord="Trust." highlightClass="text-primary" />
+          <FloatingLine text="If They Tell Others, You Built" />
+          <FloatingLine text="a Brand." highlightWord="Brand." highlightClass="text-primary" />
         </motion.h1>
 
         {/* Sub-headline */}
