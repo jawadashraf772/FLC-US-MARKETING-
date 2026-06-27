@@ -1,26 +1,77 @@
 @import "tailwindcss";
 
+@theme inline {
+  --font-sans: var(--font-sans), sans-serif;
+  --font-heading: var(--font-heading), sans-serif;
+  
+  --color-primary: #D90429;
+  --color-primary-hover: #EF233C;
+  --color-primary-soft: #FFF0F2;
+  --color-brand-dark: #09090B;
+  --color-brand-gray: #F4F4F6;
+  
+  --shadow-premium: 0 20px 40px rgba(9, 9, 11, 0.05);
+  --shadow-red: 0 10px 30px rgba(217, 4, 41, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #09090b;
 }
 
 body {
-  background: var(--background);
+  font-family: var(--font-sans);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F4F4F6;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Micro-animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Hide default cursor on desktop screens to allow CustomCursor to display perfectly */
+@media (min-width: 768px) {
+  html, body, a, button, input, select, textarea, [role="button"] {
+    cursor: none !important;
+  }
 }
