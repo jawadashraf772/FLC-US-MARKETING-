@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 
@@ -43,6 +44,33 @@ function FloatingLine({ text, highlightWord, highlightClass }: { text: string; h
 }
 
 export default function HeroSection() {
+  const sentences = [
+    {
+      line1: "If Your Customer Buys Once,",
+      line2: "You Made a ",
+      highlight: "Sale."
+    },
+    {
+      line1: "If They Come Back,",
+      line2: "You Built ",
+      highlight: "Trust."
+    },
+    {
+      line1: "If They Tell Others,",
+      line2: "You Built a ",
+      highlight: "Brand."
+    }
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % sentences.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   const logos = [
     { name: "CitrusAd", logo: "/logos/citrusad.svg", text: "CitrusAd" },
     { name: "General Electric", logo: "/logos/ge.svg", text: "General Electric" },
@@ -76,36 +104,24 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Headline — masked line-reveal exactly like reference video */}
-        <h1 className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3] max-w-5xl mx-auto font-heading font-black select-none">
-          <div className="py-1">
-            If Your Customer Buys Once,
-          </div>
-          <div className="leading-normal py-1">
-            <span className="inline-flex items-center justify-center flex-wrap">
-              <span>You Made a&nbsp;</span>
-              <span className="inline-block overflow-hidden align-bottom h-[1.2em] text-left relative min-w-[130px] sm:min-w-[170px] md:min-w-[200px] lg:min-w-[240px]">
-                <span className="animate-roll flex flex-col">
-                  <span className="text-primary block h-[1.2em] leading-[1.2em]">Sale.</span>
-                  <span className="text-primary block h-[1.2em] leading-[1.2em]">Trust.</span>
-                  <span className="text-primary block h-[1.2em] leading-[1.2em]">Brand.</span>
-                  <span className="text-primary block h-[1.2em] leading-[1.2em]">Sale.</span>
-                </span>
-              </span>
-            </span>
-          </div>
-        </h1>
-
-        <style dangerouslySetInnerHTML={{__html: `
-          @keyframes slide-up-loop {
-            0%, 25%     { transform: translateY(0); }
-            30%, 55%    { transform: translateY(-25%); }
-            60%, 85%    { transform: translateY(-50%); }
-            90%, 100%   { transform: translateY(-75%); }
-          }
-          .animate-roll {
-            animation: slide-up-loop 6s cubic-bezier(0.76, 0, 0.24, 1) infinite;
-          }
-        `}} />
+        <div className="relative h-[150px] sm:h-[140px] md:h-[170px] lg:h-[200px] flex items-center justify-center overflow-hidden w-full mx-auto max-w-5xl select-none">
+          <AnimatePresence mode="wait">
+            <motion.h1
+              key={index}
+              initial={{ y: 60, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -60, opacity: 0 }}
+              transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
+              className="absolute text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3] max-w-5xl mx-auto font-heading font-black"
+            >
+              <div>{sentences[index].line1}</div>
+              <div>
+                {sentences[index].line2}
+                <span className="text-primary">{sentences[index].highlight}</span>
+              </div>
+            </motion.h1>
+          </AnimatePresence>
+        </div>
 
         {/* Sub-headline */}
         <motion.p
