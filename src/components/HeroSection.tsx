@@ -3,28 +3,17 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Check } from "lucide-react";
 
-const characterVariants = {
+const lineVariants = {
   hidden: { 
-    opacity: 0, 
-    y: 45,
-    scale: 0.98,
+    y: "105%",
+    opacity: 0,
   },
   visible: { 
-    opacity: 1, 
     y: 0,
-    scale: 1,
+    opacity: 1,
     transition: { 
-      duration: 1.3, // slow weightless drift
-      ease: [0.16, 1, 0.3, 1] // ultra-smooth ease-out-expo curve
-    }
-  }
-};
-
-const sentenceVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.025, // fluid wave stagger speed
+      duration: 1.05,
+      ease: [0.22, 1, 0.36, 1], // cinematic ease-out-expo
     }
   }
 };
@@ -33,36 +22,22 @@ function FloatingLine({ text, highlightWord, highlightClass }: { text: string; h
   if (highlightWord && text.includes(highlightWord)) {
     const parts = text.split(highlightWord);
     return (
-      <motion.span variants={sentenceVariants} className="block whitespace-pre-wrap">
-        {parts[0].split("").map((char, i) => (
-          <motion.span key={`p0-${i}`} variants={characterVariants} className="inline-block">
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-        <span className={highlightClass}>
-          {highlightWord.split("").map((char, i) => (
-            <motion.span key={`h-${i}`} variants={characterVariants} className="inline-block">
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
-        </span>
-        {parts[1].split("").map((char, i) => (
-          <motion.span key={`p1-${i}`} variants={characterVariants} className="inline-block">
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
-        ))}
-      </motion.span>
+      <div className="overflow-hidden leading-none py-1">
+        <motion.span variants={lineVariants} className="block">
+          {parts[0]}
+          <span className={highlightClass}>{highlightWord}</span>
+          {parts[1]}
+        </motion.span>
+      </div>
     );
   }
 
   return (
-    <motion.span variants={sentenceVariants} className="block whitespace-pre-wrap">
-      {text.split("").map((char, i) => (
-        <motion.span key={i} variants={characterVariants} className="inline-block">
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </motion.span>
+    <div className="overflow-hidden leading-none py-1">
+      <motion.span variants={lineVariants} className="block">
+        {text}
+      </motion.span>
+    </div>
   );
 }
 
@@ -99,20 +74,20 @@ export default function HeroSection() {
           B2B Lead Generation Agency
         </motion.div>
 
-        {/* Headline */}
+        {/* Headline — masked line-reveal exactly like reference video */}
         <motion.h1
           initial="hidden"
           animate="visible"
           variants={{
-            hidden: { opacity: 0 },
+            hidden: {},
             visible: {
-              opacity: 1,
               transition: {
-                staggerChildren: 0.35, // staggered line entrance
+                delayChildren: 0.15,   // brief pause before text starts
+                staggerChildren: 0.18, // delay between each line appearing
               },
             },
           }}
-          className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.25] max-w-5xl mx-auto font-heading font-black select-none"
+          className="text-4xl font-extrabold tracking-tight text-[#09090B] sm:text-5xl md:text-6xl lg:text-7xl leading-[1.3] max-w-5xl mx-auto font-heading font-black select-none"
         >
           <FloatingLine text="If Your Customer Buys Once," />
           <FloatingLine text="You Made a Sale." highlightWord="Sale." highlightClass="text-primary" />
