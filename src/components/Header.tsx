@@ -15,11 +15,11 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { name: "Services & solutions", href: "#services" },
-    { name: "Industries", href: "#challenges" },
-    { name: "Case studies", href: "#case-studies" },
-    { name: "About", href: "#differentiators" },
-    { name: "Pricing", href: "#testimonials" },
+    { name: "Services & solutions", href: "#" },
+    { name: "Industries", href: "#" },
+    { name: "Case studies", href: "#" },
+    { name: "About", href: "#" },
+    { name: "Pricing", href: "#" },
   ];
 
   useEffect(() => {
