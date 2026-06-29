@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [mobileExpandedMenu, setMobileExpandedMenu] = useState<string | null>(null);
 
   const navItems = [
     { name: "Services & solutions", href: "#" },
@@ -272,23 +273,89 @@ export default function Header() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden border-t border-white/20 bg-white/80 backdrop-blur-xl px-6 py-4 space-y-4 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
-          {navItems.map((item) => {
-            const itemKey = item.href.replace("#", "");
-            const isActive = activeSection === itemKey;
+          <div className="flex flex-col gap-2">
+            {navItems.map((item) => {
+              const itemKey = item.href.replace("#", "");
+              const isActive = activeSection === itemKey;
+              const isServices = item.name === "Services & solutions";
+              const isAbout = item.name === "About";
+              const isDropdown = isServices || isAbout;
+              const isExpanded = mobileExpandedMenu === item.name;
 
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`block text-sm font-black transition-colors ${
-                  isActive ? "text-primary" : "text-slate-700 hover:text-primary"
-                }`}
-              >
-                {item.name}
-              </a>
-            );
-          })}
+              return (
+                <div key={item.name} className="border-b border-slate-100 last:border-0 pb-1">
+                  <button
+                    onClick={() => {
+                      if (isDropdown) {
+                        setMobileExpandedMenu(isExpanded ? null : item.name);
+                      } else {
+                        setIsOpen(false);
+                        window.location.href = item.href;
+                      }
+                    }}
+                    className={`w-full flex items-center justify-between text-sm font-black transition-colors py-3 ${
+                      isExpanded || isActive ? "text-primary" : "text-slate-700 hover:text-primary"
+                    }`}
+                  >
+                    {item.name}
+                    {isDropdown && (
+                      <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180 text-primary" : "text-slate-400"}`} />
+                    )}
+                  </button>
+
+                  {/* Mobile Submenu for Services */}
+                  {isServices && (
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}
+                    >
+                      <div className="pt-2 pb-4 pl-4 space-y-5 border-l-2 border-primary/20 ml-2">
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Lead Generation</span>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Appointment setting</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold email outreach</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold calling</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">LinkedIn lead generation</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Lead research</a>
+                        </div>
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Other Services</span>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Account-based marketing</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Deliverability consulting</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">HubSpot CRM consultancy</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Outsourced SDR</a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Mobile Submenu for About */}
+                  {isAbout && (
+                    <div 
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}
+                    >
+                      <div className="pt-2 pb-4 pl-4 space-y-5 border-l-2 border-primary/20 ml-2">
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Company</span>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">About us</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Awards</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Reviews & testimonials</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary flex items-center gap-2">Careers <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px]">5</span></a>
+                        </div>
+                        <div className="space-y-3">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Learn</span>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Faseeh Lall Podcast</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">The Marketing Speakeasy</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Blog</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Webinars</a>
+                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Resources library</a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
           <a
             href="#challenges"
             onClick={() => setIsOpen(false)}
