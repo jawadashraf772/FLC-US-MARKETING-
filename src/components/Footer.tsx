@@ -28,7 +28,7 @@ export default function Footer() {
           
           {/* Column 1: Brand Info */}
           <div className="md:col-span-4 space-y-4">
-            <img src="/logo.png" alt="Faseeh Lall & Co." className="h-9 w-auto object-contain brightness-0 invert" />
+            <img src="/logo.png" alt="Faseeh Lall & Co." className="h-9 w-auto object-contain" />
             <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest pt-1">
               #1 B2B LEAD GENERATION AGENCY
             </p>
@@ -46,7 +46,7 @@ export default function Footer() {
               {industries.slice(0, 6).map((item, idx) => (
                 <li key={idx}>
                   <a href="#challenges" className="hover:text-white transition-colors">
-                    {item}
+                    #{item}
                   </a>
                 </li>
               ))}
@@ -92,8 +92,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs font-bold text-slate-400">
               <li>
-                <a href="mailto:sales@belkins.io" className="text-primary hover:text-primary-hover font-black text-sm block transition-colors">
-                  sales@belkins.io
+                <a href="mailto:sales@faseehlallandco.com" className="text-primary hover:text-primary-hover font-black text-sm block transition-colors">
+                  sales@faseehlallandco.com
                 </a>
               </li>
               <li>
@@ -109,7 +109,7 @@ export default function Footer() {
         {/* Bottom Line */}
         <div className="border-t border-slate-800/80 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-semibold text-slate-500">
           <div>
-            &copy; 2026 Belkins Inc. All rights reserved.
+            &copy; 2026 Faseeh Lall & Co. All rights reserved.
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <a href="#" className="hover:text-white transition-colors">Terms of Use</a>

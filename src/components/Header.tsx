@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { 
+  Menu, X, ChevronRight, ChevronDown, Calendar, AtSign, 
+  PhoneCall, Users, UserSearch, UserCheck, ShieldCheck, 
+  Target, Globe, Layers, Building2, Rocket, ArrowUpRight,
+  User, Trophy, MessageSquare, Briefcase, Headphones, Megaphone,
+  PenTool, Mic, BookOpen
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Header() {
@@ -55,7 +61,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-slate-100 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-white/20 bg-white/60 backdrop-blur-xl transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.03)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo (Faseeh Lall & Co.) */}
         <a href="#" className="flex items-center">
@@ -67,26 +73,177 @@ export default function Header() {
           {navItems.map((item) => {
             const itemKey = item.href.replace("#", "");
             const isActive = activeSection === itemKey;
+            const isServices = item.name === "Services & solutions";
+            const isAbout = item.name === "About";
+            const isDropdown = isServices || isAbout;
 
             return (
-              <a
-                key={item.name}
-                href={item.href}
-                className={`relative text-[13px] font-black tracking-normal transition-all duration-300 py-2 ${
-                  isActive 
-                    ? "text-primary" 
-                    : "text-slate-600 hover:text-primary"
-                }`}
-              >
-                {item.name}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavDot"
-                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full"
-                    transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                  />
+              <div key={item.name} className="group relative">
+                <a
+                  href={item.href}
+                  className={`relative flex items-center gap-1 text-[13px] font-black tracking-normal transition-all duration-300 py-6 ${
+                    isActive || isDropdown // Or keep it simple
+                      ? "text-primary" 
+                      : "text-slate-600 hover:text-primary"
+                  } ${isDropdown ? "group-hover:text-primary" : ""}`}
+                >
+                  {item.name}
+                  {isDropdown && (
+                    <ChevronDown className="h-3.5 w-3.5 text-slate-400 group-hover:text-primary transition-colors group-hover:rotate-180" />
+                  )}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNavDot"
+                      className="absolute bottom-4 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full"
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    />
+                  )}
+                </a>
+
+                {/* Services Mega Menu Dropdown */}
+                {isServices && (
+                  <div className="absolute top-[80px] left-1/2 -translate-x-[40%] w-[900px] opacity-0 invisible translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col">
+                      
+                      {/* Top Section */}
+                      <div className="p-8">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">
+                          Lead Generation
+                        </span>
+                        <div className="grid grid-cols-3 gap-4">
+                          {/* Card 1 */}
+                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                            <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
+                              <Calendar className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-black text-slate-800">Appointment setting</h4>
+                              <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Secure meetings with decision-makers and build stable pipeline</p>
+                            </div>
+                          </a>
+                          {/* Card 2 */}
+                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                            <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
+                              <AtSign className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-black text-slate-800">Cold email outreach</h4>
+                              <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Run email campaigns that break through the noise and book calls</p>
+                            </div>
+                          </a>
+                          {/* Card 3 */}
+                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                            <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
+                              <PhoneCall className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-black text-slate-800">Cold calling</h4>
+                              <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Book 30% more appointments through direct phone outreach</p>
+                            </div>
+                          </a>
+                          {/* Card 4 */}
+                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                            <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
+                              <Users className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-black text-slate-800">LinkedIn lead generation</h4>
+                              <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Expand your reach and engage prospects directly on LinkedIn</p>
+                            </div>
+                          </a>
+                          {/* Card 5 */}
+                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                            <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
+                              <UserSearch className="h-5 w-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-sm font-black text-slate-800">Lead research</h4>
+                              <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Get hand-picked and verified lists of sales-ready prospects</p>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Bottom Section */}
+                      <div className="bg-slate-50/80 border-t border-slate-100 grid grid-cols-3">
+                        <div className="p-8 border-r border-slate-100">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">
+                            Other Services
+                          </span>
+                          <ul className="space-y-4">
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><UserCheck className="h-4 w-4 text-primary" /> Account-based marketing</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><ShieldCheck className="h-4 w-4 text-primary" /> Deliverability consulting</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Target className="h-4 w-4 text-primary" /> HubSpot CRM consultancy</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Globe className="h-4 w-4 text-primary" /> Outsourced SDR</a></li>
+                          </ul>
+                        </div>
+                        
+                        <div className="p-8">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">
+                            By Company Size
+                          </span>
+                          <ul className="space-y-4">
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Layers className="h-4 w-4 text-primary" /> Enterprise</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Building2 className="h-4 w-4 text-primary" /> SMB</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Rocket className="h-4 w-4 text-primary" /> Startup</a></li>
+                          </ul>
+                        </div>
+                        
+                        <div className="p-8 bg-white/50 relative overflow-hidden group/approach cursor-pointer border-l border-slate-100">
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover/approach:opacity-100 transition-opacity" />
+                          <div className="relative z-10 flex flex-col h-full justify-between">
+                            <div>
+                              <h3 className="text-xl font-heading font-extrabold text-slate-900 group-hover/approach:text-primary transition-colors">Our approach</h3>
+                              <p className="text-[12px] font-semibold text-slate-500 mt-2 leading-relaxed">
+                                Find out about Faseeh Lall & Co.'s lead generation process that sets us apart
+                              </p>
+                            </div>
+                            <div className="self-end text-primary group-hover/approach:translate-x-1 group-hover/approach:-translate-y-1 transition-transform">
+                              <ArrowUpRight className="h-5 w-5" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
                 )}
-              </a>
+                
+                {/* About Mega Menu Dropdown */}
+                {isAbout && (
+                  <div className="absolute top-[80px] left-1/2 -translate-x-[40%] w-[500px] opacity-0 invisible translate-y-4 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-out z-50 pointer-events-none group-hover:pointer-events-auto">
+                    <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden flex flex-col">
+                      <div className="grid grid-cols-2">
+                        {/* Company Column */}
+                        <div className="p-8 border-r border-slate-100">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">
+                            COMPANY
+                          </span>
+                          <ul className="space-y-4">
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><User className="h-4 w-4 text-primary" /> About us</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Trophy className="h-4 w-4 text-primary" /> Awards</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><MessageSquare className="h-4 w-4 text-primary" /> Reviews & testimonials</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Briefcase className="h-4 w-4 text-primary" /> Careers <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full text-[10px] ml-1">5</span></a></li>
+                          </ul>
+                        </div>
+                        {/* Learn Column */}
+                        <div className="p-8">
+                          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">
+                            LEARN
+                          </span>
+                          <ul className="space-y-4">
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Headphones className="h-4 w-4 text-primary" /> Faseeh Lall Podcast</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Megaphone className="h-4 w-4 text-primary" /> The Marketing Speakeasy</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><PenTool className="h-4 w-4 text-primary" /> Blog</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><Mic className="h-4 w-4 text-primary" /> Webinars</a></li>
+                            <li><a href="#" className="flex items-center gap-3 text-[13px] font-bold text-slate-700 hover:text-primary transition-colors"><BookOpen className="h-4 w-4 text-primary" /> Resources library</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             );
           })}
         </nav>
@@ -97,7 +254,7 @@ export default function Header() {
             href="#challenges"
             className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-2.5 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-sm shadow-primary/10"
           >
-            Book a call
+            Talk to expert
           </a>
         </div>
 
@@ -114,7 +271,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden border-t border-slate-100 bg-white px-6 py-4 space-y-4 shadow-lg">
+        <div className="md:hidden border-t border-white/20 bg-white/80 backdrop-blur-xl px-6 py-4 space-y-4 shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
           {navItems.map((item) => {
             const itemKey = item.href.replace("#", "");
             const isActive = activeSection === itemKey;
@@ -137,7 +294,7 @@ export default function Header() {
             onClick={() => setIsOpen(false)}
             className="block text-center rounded-xl bg-primary px-5 py-3 text-xs font-black uppercase tracking-wider text-white transition-colors hover:bg-primary-hover"
           >
-            Book a call
+            Talk to expert
           </a>
         </div>
       )}

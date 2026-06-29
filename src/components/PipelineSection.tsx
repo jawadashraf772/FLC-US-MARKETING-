@@ -39,24 +39,28 @@ export default function PipelineSection() {
 
   const funnelBlocks = [
     {
-      label: "Leads",
+      label: "LEADS",
       value: "Up to 18,000* prospects within your client profile",
-      path: "M 20 5 L 480 5 Q 495 5 490 17 L 450 72 Q 445 80 430 80 L 70 80 Q 55 80 50 72 L 10 17 Q 5 5 20 5 Z"
+      path: "M 20 5 L 480 5 Q 495 5 490 17 L 450 72 Q 445 80 430 80 L 70 80 Q 55 80 50 72 L 10 17 Q 5 5 20 5 Z",
+      widthClass: "max-w-[85%] sm:max-w-[80%]"
     },
     {
       label: "MQLs",
       value: "Up to 9,000* marketing-qualified leads",
-      path: "M 50 5 L 450 5 Q 462 5 457 17 L 415 72 Q 410 80 395 80 L 105 80 Q 90 80 85 72 L 43 17 Q 38 5 50 5 Z"
+      path: "M 50 5 L 450 5 Q 462 5 457 17 L 415 72 Q 410 80 395 80 L 105 80 Q 90 80 85 72 L 43 17 Q 38 5 50 5 Z",
+      widthClass: "max-w-[75%] sm:max-w-[70%]"
     },
     {
       label: "SQLs",
       value: "200* sales-qualified meetings with decision-makers",
-      path: "M 85 5 L 415 5 Q 427 5 422 17 L 380 72 Q 375 80 360 80 L 140 80 Q 125 80 120 72 L 78 17 Q 73 5 85 5 Z"
+      path: "M 85 5 L 415 5 Q 427 5 422 17 L 380 72 Q 375 80 360 80 L 140 80 Q 125 80 120 72 L 78 17 Q 73 5 85 5 Z",
+      widthClass: "max-w-[62%] sm:max-w-[55%]"
     },
     {
-      label: "Opportunities",
+      label: "OPPORTUNITIES",
       value: "10-30* closed deals",
-      path: "M 120 5 L 380 5 Q 392 5 387 17 L 345 72 Q 340 80 325 80 L 175 80 Q 160 80 155 72 L 113 17 Q 108 5 120 5 Z"
+      path: "M 120 5 L 380 5 Q 392 5 387 17 L 345 72 Q 340 80 325 80 L 175 80 Q 160 80 155 72 L 113 17 Q 108 5 120 5 Z",
+      widthClass: "max-w-[50%] sm:max-w-[45%]"
     }
   ];
 
@@ -67,7 +71,7 @@ export default function PipelineSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-20">
           <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl font-heading font-black">
-            How your pipeline will <br /> look with Belkins
+            How your pipeline will <br /> look with Faseeh Lall & Co.
           </h2>
           <p className="text-sm font-semibold text-slate-400 max-w-xl mx-auto">
             Focus on scaling your business while we deliver you sales-ready B2B leads.
@@ -94,8 +98,8 @@ export default function PipelineSection() {
                       key={item.id}
                       className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                         isActive 
-                          ? "bg-white/5 border-white/10 shadow-lg shadow-black/10" 
-                          : "border-transparent hover:bg-white/5"
+                          ? "bg-white/5 border-primary/40 shadow-[0_0_15px_rgba(217,4,41,0.15)]" 
+                          : "border-transparent hover:bg-white/5 hover:border-white/10"
                       }`}
                       onClick={() => setActiveStep(item)}
                     >
@@ -135,8 +139,8 @@ export default function PipelineSection() {
                       key={item.id}
                       className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer ${
                         isActive 
-                          ? "bg-white/5 border-white/10 shadow-lg shadow-black/10" 
-                          : "border-transparent hover:bg-white/5"
+                          ? "bg-white/5 border-primary/40 shadow-[0_0_15px_rgba(217,4,41,0.15)]" 
+                          : "border-transparent hover:bg-white/5 hover:border-white/10"
                       }`}
                       onClick={() => setActiveStep(item)}
                     >
@@ -180,25 +184,35 @@ export default function PipelineSection() {
                 const isActive = activeStep.funnelIndex === idx;
                 
                 return (
-                  <div key={idx} className="relative w-full aspect-[500/80] flex items-center justify-center">
+                  <div 
+                    key={idx} 
+                    className="group relative w-full aspect-[500/80] flex items-center justify-center cursor-pointer"
+                    onClick={() => {
+                      const matchedStep = steps.find(s => s.funnelIndex === idx);
+                      if (matchedStep) setActiveStep(matchedStep);
+                    }}
+                  >
                     {/* SVG shape */}
                     <svg viewBox="0 0 500 80" preserveAspectRatio="none" className="absolute inset-0 w-full h-full">
                       <path 
                         d={block.path} 
-                        fill={isActive ? "#D90429" : "#222225"} 
-                        className="transition-all duration-500 ease-in-out"
+                        className={`transition-all duration-500 ease-in-out ${
+                          isActive 
+                            ? "fill-[#D90429]" 
+                            : "fill-[#222225] group-hover:fill-[#2d2d31]"
+                        }`}
                       />
                     </svg>
 
                     {/* Funnel badge identifier */}
-                    <div className="absolute top-[-5px] left-1/2 -translate-x-1/2 bg-[#333336] text-[8px] font-black uppercase tracking-wider text-slate-400 px-3.5 py-0.5 rounded-full border border-slate-700/50">
+                    <div className="absolute top-[-5px] left-1/2 -translate-x-1/2 bg-[#333336] text-[8px] font-black tracking-wider text-slate-400 px-3.5 py-0.5 rounded-full border border-slate-700/50 group-hover:border-slate-500/50 transition-all duration-300">
                       {block.label}
                     </div>
 
                     {/* Text container */}
-                    <div className="relative z-10 px-8 text-center max-w-sm sm:max-w-md pointer-events-none">
+                    <div className={`relative z-10 px-4 text-center pointer-events-none ${block.widthClass}`}>
                       <span className={`text-xs sm:text-sm font-black transition-colors duration-300 leading-snug block ${
-                        isActive ? "text-white" : "text-slate-400"
+                        isActive ? "text-white" : "text-slate-400 group-hover:text-slate-200"
                       }`}>
                         {block.value}
                       </span>

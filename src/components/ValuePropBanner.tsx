@@ -75,23 +75,32 @@ export default function ValuePropBanner() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         
         {/* 1. Value Acquisition Plan Banner */}
-        <div className="bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-sm mb-20">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative bg-white border border-slate-100 rounded-3xl p-8 md:p-12 shadow-[0_8px_30px_rgb(0,0,0,0.04)] mb-20 overflow-hidden group hover:shadow-[0_8px_40px_rgba(217,4,41,0.08)] hover:border-red-100 transition-all duration-500"
+        >
+          {/* Subtle animated gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+          
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-black tracking-widest text-primary uppercase">
+              <span className="text-xs font-black tracking-widest text-primary uppercase bg-primary-soft px-3 py-1 rounded-full inline-block">
                 Acquisition Plan
               </span>
               <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl font-heading leading-tight">
                 Client acquisition plan <br />
-                <span className="text-primary">done for you</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#FF4D6D]">done for you</span>
               </h2>
               <p className="text-base text-slate-550 leading-relaxed font-sans font-medium">
                 Transcending industry fluctuations, our growth solutions will continuously increase your pipeline up to <strong className="text-slate-900 font-extrabold">45%</strong> at just a fourth of the in-house cost.
               </p>
             </div>
 
-            <div className="lg:col-span-5 bg-slate-50 rounded-2xl p-6 border border-slate-100/80">
+            <div className="lg:col-span-5 bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-100 group-hover:border-red-100/50 transition-colors duration-500 shadow-inner">
               <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">
                 Active Outreach Channels
               </h4>
@@ -99,7 +108,7 @@ export default function ValuePropBanner() {
                 {channels.map((channel, idx) => (
                   <span 
                     key={idx}
-                    className="bg-white border border-slate-150 rounded-full px-3.5 py-1.5 text-xs font-black text-slate-700 hover:border-primary/20 hover:text-primary transition-colors cursor-default shadow-xs"
+                    className="bg-white border border-slate-150 rounded-full px-3.5 py-1.5 text-xs font-black text-slate-600 hover:border-primary/30 hover:text-primary transition-all duration-300 cursor-default shadow-xs hover:shadow-sm"
                   >
                     {channel}
                   </span>
@@ -108,7 +117,7 @@ export default function ValuePropBanner() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
         {/* 2. All-Inclusive Services Grid */}
         <div className="space-y-16">

@@ -8,7 +8,7 @@ export default function TestimonialsSection() {
 
   const reviews = [
     {
-      text: "“In the first month, we closed our first contract, which was a promising start. Belkins helped us build a robust sales pipeline.”",
+      text: "“In the first month, we closed our first contract, which was a promising start. Faseeh Lall & Co. helped us build a robust sales pipeline.”",
       author: "Patrick Benasillo",
       role: "CCO, EVP & Co-Founder",
       industry: "Design",
@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
       avatarInitials: "RD"
     },
     {
-      text: "“Belkins impressed us with their ability to consistently deliver high-quality appointments, exceeding our requirements.”",
+      text: "“Faseeh Lall & Co. impressed us with their ability to consistently deliver high-quality appointments, exceeding our requirements.”",
       author: "Chris Thomas",
       role: "VP of Sales at Kingbee Vans",
       industry: "Manufacturing",
@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
       avatarInitials: "SC"
     },
     {
-      text: "“I highly recommend Belkins to any organization seeking a vendor that can deliver exceptional results.”",
+      text: "“I highly recommend Faseeh Lall & Co. to any organization seeking a vendor that can deliver exceptional results.”",
       author: "Jeremiah Guappone",
       role: "General Manager at Data Genomix",
       industry: "Advertising & Marketing",
@@ -80,34 +80,36 @@ export default function TestimonialsSection() {
           </h2>
         </div>
 
-        {/* Horizontal Slider Wrapper */}
+        {/* Cards Scroll Wrapper */}
         <div className="relative w-full">
           <div 
             ref={scrollRef}
-            className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none pb-8"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 hide-scrollbar -mx-6 px-6 lg:-mx-8 lg:px-8"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {reviews.map((item, idx) => (
               <div
                 key={idx}
-                className="snap-start shrink-0 w-[85vw] sm:w-[450px] rounded-[2rem] border border-slate-150 bg-white p-8 shadow-xs flex flex-col justify-between"
+                className="snap-start shrink-0 w-[85vw] sm:w-[400px] rounded-[2rem] border border-slate-150 bg-white p-8 shadow-xs flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:border-primary/30 hover:-translate-y-1"
               >
                 <div className="space-y-6">
                   {/* Rating & Industry Badge */}
-                  <div className="flex items-center gap-3">
-                    <div className="flex gap-0.5 text-[#D90429]">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-[#D90429] stroke-none" />
-                      ))}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-0.5 text-[#D90429]">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-[#D90429] stroke-none" />
+                        ))}
+                      </div>
+                      <span className="text-xs font-bold text-slate-700">5.0</span>
                     </div>
-                    <span className="text-xs font-bold text-slate-700">5.0</span>
                     <span className="rounded-full bg-slate-50 border border-slate-100 px-3 py-1 text-[10px] font-black text-slate-500 uppercase tracking-wide">
                       {item.industry}
                     </span>
                   </div>
 
                   {/* Quote Text */}
-                  <p className="text-sm font-black text-slate-800 leading-relaxed min-h-[100px]">
+                  <p className="text-sm font-black text-slate-800 leading-relaxed">
                     "{item.text.replace(/[“”"']/g, "")}"
                   </p>
                 </div>
@@ -132,19 +134,19 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Chevrons Navigation */}
-        <div className="mt-12 flex justify-center gap-4">
+        {/* Navigation Arrows */}
+        <div className="mt-4 flex justify-center gap-4">
           <button
             onClick={() => handleScroll("left")}
-            className="h-12 w-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-700 transition-colors shadow-xs"
+            className="h-12 w-12 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 hover:border-[#D90429]/50 hover:text-[#D90429] hover:shadow-md transition-all active:scale-95 cursor-pointer"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className="h-6 w-6" />
           </button>
           <button
             onClick={() => handleScroll("right")}
-            className="h-12 w-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-700 transition-colors shadow-xs"
+            className="h-12 w-12 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 hover:border-[#D90429]/50 hover:text-[#D90429] hover:shadow-md transition-all active:scale-95 cursor-pointer"
           >
-            <ChevronRight className="h-5 w-5" />
+            <ChevronRight className="h-6 w-6" />
           </button>
         </div>
 
@@ -157,7 +159,7 @@ export default function TestimonialsSection() {
                 <span className="text-primary">B2B lead gen company</span> in the USA
               </h3>
               <p className="text-xs sm:text-sm font-semibold text-slate-400">
-                See what others are saying about Belkins’ B2B lead generation services and how we helped hack their growth.
+                See what others are saying about Faseeh Lall & Co.’s B2B lead generation services and how we helped hack their growth.
               </p>
             </div>
 

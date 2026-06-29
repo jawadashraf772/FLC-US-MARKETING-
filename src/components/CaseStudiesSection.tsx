@@ -47,7 +47,7 @@ export default function CaseStudiesSection() {
       ]
     },
     {
-      title: "Belkins overcame sales pipeline exhaustion, boosting appointments x2 for a health monitoring company.",
+      title: "Faseeh Lall & Co. overcame sales pipeline exhaustion, boosting appointments x2 for a health monitoring company.",
       client: "OpenTeleHealth",
       logo: (
         <span className="font-heading font-black text-xl tracking-tighter text-slate-800 flex items-center gap-1">
@@ -60,7 +60,7 @@ export default function CaseStudiesSection() {
       ]
     },
     {
-      title: "An investment platform fixed inconsistent lead flow issues and landed 30+ monthly meetings with Belkins’ omnichannel approach",
+      title: "An investment platform fixed inconsistent lead flow issues and landed 30+ monthly meetings with Faseeh Lall & Co.’s omnichannel approach",
       client: "NDA Platform",
       logo: (
         <span className="font-heading font-black text-xl tracking-tighter text-slate-800 flex items-center gap-1">
@@ -95,21 +95,21 @@ export default function CaseStudiesSection() {
             How companies succeed with us
           </h2>
           <p className="text-sm font-semibold text-slate-450 max-w-xl mx-auto">
-            B2B leaders that choose Belkins achieve results that no other lead generation and marketing agency can deliver.
+            B2B leaders that choose Faseeh Lall & Co. achieve results that no other lead generation and marketing agency can deliver.
           </p>
         </div>
 
-        {/* Horizontal Slider Wrapper */}
+        {/* Cards Scroll Wrapper */}
         <div className="relative w-full">
           <div 
             ref={scrollRef}
-            className="flex gap-8 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none pb-8"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            className="flex gap-8 overflow-x-auto snap-x snap-mandatory pb-12 pt-4 hide-scrollbar -mx-6 px-6 lg:-mx-8 lg:px-8"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {cases.map((item, idx) => (
               <div
                 key={idx}
-                className="snap-start shrink-0 w-[85vw] sm:w-[450px] rounded-[2rem] border border-slate-150 bg-white p-8 shadow-xs flex flex-col justify-between"
+                className="snap-start shrink-0 w-[85vw] sm:w-[400px] rounded-[2rem] border border-slate-150 bg-white p-8 shadow-xs flex flex-col justify-between hover:shadow-lg transition-all duration-300 hover:border-primary/30 hover:-translate-y-1"
               >
                 <div className="space-y-6">
                   {/* Logo header */}
@@ -118,7 +118,7 @@ export default function CaseStudiesSection() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-sm sm:text-base font-black text-slate-800 leading-snug h-[80px] overflow-hidden">
+                  <h3 className="text-sm sm:text-base font-black text-slate-800 leading-snug">
                     {item.title}
                   </h3>
 
@@ -157,28 +157,28 @@ export default function CaseStudiesSection() {
           </div>
         </div>
 
-        {/* Explore Button and Slider Control chevrons */}
-        <div className="mt-12 flex flex-col items-center gap-6">
+        {/* Explore Button & Navigation Arrows */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-6 px-2">
           <a
             href="#"
             className="rounded-full bg-white border border-slate-150 shadow-xs px-10 py-4 text-xs font-black text-slate-700 hover:border-[#D90429]/30 hover:text-[#D90429] transition-all"
           >
-            Explore case studies
+            Explore all case studies
           </a>
 
-          {/* Chevrons Navigation circles */}
+          {/* Navigation Arrows */}
           <div className="flex gap-4">
             <button
               onClick={() => handleScroll("left")}
-              className="h-12 w-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-700 transition-colors shadow-xs"
+              className="h-12 w-12 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 hover:border-[#D90429]/50 hover:text-[#D90429] hover:shadow-md transition-all active:scale-95 cursor-pointer"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-6 w-6" />
             </button>
             <button
               onClick={() => handleScroll("right")}
-              className="h-12 w-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-700 transition-colors shadow-xs"
+              className="h-12 w-12 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 hover:border-[#D90429]/50 hover:text-[#D90429] hover:shadow-md transition-all active:scale-95 cursor-pointer"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-6 w-6" />
             </button>
           </div>
         </div>

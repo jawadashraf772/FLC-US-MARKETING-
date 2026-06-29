@@ -19,7 +19,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-white pt-24 pb-20 lg:pt-36 lg:pb-28">
-      {/* Soft orange/peach background glows (Belkins style) */}
+      {/* Soft orange/peach background glows */}
       <div className="absolute top-[10%] left-[5%] -z-10 h-[320px] w-[320px] sm:h-[450px] sm:w-[450px] rounded-full bg-primary-soft opacity-70 blur-3xl" />
       <div className="absolute top-[5%] right-[5%] -z-10 h-[250px] w-[250px] sm:h-[350px] sm:w-[350px] rounded-full bg-slate-50 opacity-80 blur-3xl" />
 
@@ -40,10 +40,10 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] max-w-4xl mx-auto font-heading font-black"
+          className="text-4xl font-extrabold tracking-tighter text-slate-900 sm:text-5xl md:text-6xl lg:text-7xl leading-[1.05] max-w-4xl mx-auto font-heading font-black"
         >
           Double your sales <br />
-          <span className="text-primary">pipeline value</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-hover to-[#FF4D6D] drop-shadow-sm">pipeline value</span>
         </motion.h1>
 
         {/* Description */}
@@ -51,7 +51,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="text-base sm:text-lg md:text-xl text-slate-550 leading-relaxed max-w-2xl mx-auto mt-8 font-sans font-medium"
+          className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto mt-8 font-sans font-medium"
         >
           We deliver <strong className="font-extrabold text-slate-900">100–400+ qualified appointments</strong> in a year through tailored omnichannel strategies.
         </motion.p>
@@ -61,13 +61,14 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="mt-10"
+          className="mt-10 relative group inline-block"
         >
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary to-[#FF4D6D] rounded-xl blur-md opacity-30 group-hover:opacity-70 transition duration-500"></div>
           <a
             href="#challenges"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4.5 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20"
+            className="relative inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4.5 text-xs font-black uppercase tracking-wider text-white transition-all hover:bg-primary-hover hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-primary/20"
           >
-            <span>Get a quote</span>
+            <span>Talk to expert</span>
             <ArrowRight className="h-4.5 w-4.5" />
           </a>
         </motion.div>
@@ -77,14 +78,14 @@ export default function HeroSection() {
       <div className="mt-28 border-t border-slate-100 pt-10 select-none">
         <div className="mx-auto max-w-7xl px-6 text-center mb-8">
           <p className="text-[10px] font-black tracking-wider text-slate-400 uppercase">
-            Sales and marketing leaders at top B2B companies trust Belkins
+            Sales and marketing leaders at top B2B companies trust Faseeh Lall & Co.
           </p>
         </div>
         
         {/* Horizontal Marquee Scroll */}
         <div className="relative overflow-hidden w-full py-4 bg-slate-50/30">
           <div className="flex w-max gap-20 animate-marquee-left whitespace-nowrap items-center">
-            {[...logos, ...logos, ...logos].map((logo, idx) => (
+            {[...logos, ...logos].map((logo, idx) => (
               <div
                 key={idx}
                 className="flex items-center justify-center text-slate-400 font-extrabold text-lg sm:text-xl tracking-tight grayscale opacity-45 hover:opacity-100 hover:grayscale-0 transition-all duration-350 cursor-pointer mx-12"
