@@ -2,7 +2,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowRight, CheckCircle2, ChevronDown, Linkedin, Users, MessageSquare, LineChart, Target, Search, FileText } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, Users, MessageSquare, LineChart, Target, Search, FileText } from "lucide-react";
 
 export default function LinkedinLeadGenServices() {
   return (
