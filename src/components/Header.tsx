@@ -6,7 +6,7 @@ import {
   PhoneCall, Users, UserSearch, UserCheck, ShieldCheck, 
   Target, Globe, Layers, Building2, Rocket, ArrowUpRight,
   User, Trophy, MessageSquare, Briefcase, Headphones, Megaphone,
-  PenTool, Mic, BookOpen
+  PenTool, Mic, BookOpen, ArrowRight
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -113,7 +113,7 @@ export default function Header() {
                         </span>
                         <div className="grid grid-cols-3 gap-4">
                           {/* Card 1 */}
-                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                          <a href="/appointment-setting" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
                             <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
                               <Calendar className="h-5 w-5" />
                             </div>
@@ -123,7 +123,7 @@ export default function Header() {
                             </div>
                           </a>
                           {/* Card 2 */}
-                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                          <a href="/cold-email-services" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
                             <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
                               <AtSign className="h-5 w-5" />
                             </div>
@@ -133,7 +133,7 @@ export default function Header() {
                             </div>
                           </a>
                           {/* Card 3 */}
-                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                          <a href="/cold-calling-services" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
                             <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
                               <PhoneCall className="h-5 w-5" />
                             </div>
@@ -143,7 +143,7 @@ export default function Header() {
                             </div>
                           </a>
                           {/* Card 4 */}
-                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                          <a href="/linkedin-lead-generation-services" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
                             <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
                               <Users className="h-5 w-5" />
                             </div>
@@ -153,12 +153,15 @@ export default function Header() {
                             </div>
                           </a>
                           {/* Card 5 */}
-                          <a href="#" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
+                          <a href="/lead-research" className="flex items-start gap-4 p-4 rounded-2xl border border-slate-100 hover:border-primary/30 hover:shadow-md transition-all group/card">
                             <div className="text-primary mt-0.5 group-hover/card:scale-110 transition-transform">
                               <UserSearch className="h-5 w-5" />
                             </div>
                             <div>
-                              <h4 className="text-sm font-black text-slate-800">Lead research</h4>
+                              <div className="font-black text-slate-900 group-hover/card:text-primary transition-colors flex items-center gap-2">
+                                Lead research
+                                <ArrowRight className="h-3 w-3 opacity-0 -translate-x-2 group-hover/card:opacity-100 group-hover/card:translate-x-0 transition-all" />
+                              </div>
                               <p className="text-[11px] font-semibold text-slate-500 mt-1 leading-relaxed">Get hand-picked and verified lists of sales-ready prospects</p>
                             </div>
                           </a>
@@ -312,9 +315,9 @@ export default function Header() {
                         <div className="space-y-3">
                           <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Lead Generation</span>
                           <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Appointment setting</a>
-                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold email outreach</a>
-                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold calling</a>
-                          <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">LinkedIn lead generation</a>
+                          <a href="/cold-email-services" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold email outreach</a>
+                          <a href="/cold-calling-services" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Cold calling</a>
+                          <a href="/linkedin-lead-generation-services" className="block text-[13px] font-bold text-slate-600 hover:text-primary">LinkedIn lead generation</a>
                           <a href="#" className="block text-[13px] font-bold text-slate-600 hover:text-primary">Lead research</a>
                         </div>
                         <div className="space-y-3">

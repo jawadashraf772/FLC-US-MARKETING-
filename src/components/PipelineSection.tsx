@@ -186,7 +186,7 @@ export default function PipelineSection() {
                 return (
                   <div 
                     key={idx} 
-                    className="group relative w-full aspect-[500/80] flex items-center justify-center cursor-pointer"
+                    className="group relative w-full aspect-[500/80] flex items-center justify-center cursor-pointer transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98]"
                     onClick={() => {
                       const matchedStep = steps.find(s => s.funnelIndex === idx);
                       if (matchedStep) setActiveStep(matchedStep);
